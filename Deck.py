@@ -34,7 +34,7 @@ class Deck:
     def shuffle(self):
         """Generates a new, randomly shuffled deck"""
         self.Deck=[]
-        for i in (random.sample(range(1,52),52)):
+        for i in (random.sample(range(0,51),51)):
             self.Deck.append(self.Cards[i])
 
     def cut(self):
