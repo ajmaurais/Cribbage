@@ -9,9 +9,10 @@ class Deck:
     """A Full Deck of 52 cards"""
 
     def __init__(self):
-        self.genDeck()
-        self.Cards=[]
-        self.Deck=[]
+        self.Cards = []
+        self.Deck = []
+        self.genCards()
+
 
     def genCards(self):
         """Generates a deck of 52 cards in order"""
@@ -31,13 +32,19 @@ class Deck:
             self.Cards.append(Card(name='King', suit=suit, value=10))
 
     def shuffle(self):
+        """Generates a new, randomly shuffled deck"""
         self.Deck=[]
         for i in (random.sample(range(1,52),52)):
             self.Deck.append(self.Cards[i])
 
     def cut(self):
+        """Shows card that resulted form cut, does not remove from deck"""
         cutIndex=random.randint(1,len(self.Deck))
         return self.Deck[cutIndex]
+
+    def dealCard(self):
+        """Deals a single card by popping the top card off the Deck"""
+        return self.Deck.pop(0)
 
 
 
