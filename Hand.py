@@ -16,4 +16,7 @@ class Hand:
     def __getitem__(self, key):
         return self.cards[key]
 
+    def __len__(self):
+        return len(self.cards)
+
 #+JMJ+
