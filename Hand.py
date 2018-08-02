@@ -5,16 +5,15 @@
 
 class Hand:
     def __init__(self):
-        self.hand=[]
+        self.cards=[]
 
     def addCard(self,card):
-        self.hand.append(card)
+        self.cards.append(card)
 
     def remCard(self,card):
-        self.hand.remove(card)
+        self.cards.remove(card)
 
-    def scoreHand(self):
-        #TODO generate methood to auto score and devise user scoring methood
-        pass
+    def __getitem__(self, key):
+        return self.cards[key]
 
 #+JMJ+
