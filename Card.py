@@ -15,4 +15,7 @@ class Card:
         """Indexing Scheme: 0-> name, 1-> value, 2->value """
         return self.dataTupple[key]
 
+    def __str__(self):
+        return str(self.dataTuple)
+
 #+JMJ+

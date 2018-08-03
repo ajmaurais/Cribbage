@@ -19,4 +19,7 @@ class Hand:
     def __len__(self):
         return len(self.cards)
 
+    def __iter__(self):
+        return self.cards
+
 #+JMJ+
