@@ -1,3 +1,7 @@
+#+JMJ+
+#Paul A Maurais
+#2018
+
 import unittest
 from Card import *
 from Hand import *
@@ -42,3 +46,5 @@ class scoreTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+    
+#+JMJ+
