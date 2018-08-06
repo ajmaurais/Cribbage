@@ -13,7 +13,7 @@ class Card:
         self.sequenceNumber=self.sequentialize()
 
     def sequentialize(self):
-        """returns an enumeration value"""
+        """returns a sequence value"""
         if self.value<10:
             return self.value
         elif self.name== 'Ten':
