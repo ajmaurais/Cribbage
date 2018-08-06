@@ -71,7 +71,7 @@ def runs(subsets):
                 curr+=1
             else:
                 runLen=1
-                break #only count runs that span the whole set (every subset of the hand is coverd)
+                break #only count runs that span the whole subset (every subset of the hand is coverd)
 
         #only count the max run and any runs of equivilent len
         if runLen>maxRunLen:
