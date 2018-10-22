@@ -1,16 +1,16 @@
-#+JMJ+
-#Paul A Maurais
-#2018
+# +JMJ+
+# Paul A Maurais
+# 2018
 
 
 class Hand:
     def __init__(self):
-        self.cards=[]
+        self.cards = []
 
-    def addCard(self,card):
+    def addCard(self, card):
         self.cards.append(card)
 
-    def remCard(self,card):
+    def remCard(self, card):
         self.cards.remove(card)
 
     def __getitem__(self, key):
@@ -22,4 +22,4 @@ class Hand:
     def __iter__(self):
         return self.cards
 
-#+JMJ+
+# +JMJ+

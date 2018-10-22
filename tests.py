@@ -1,6 +1,6 @@
-#+JMJ+
-#Paul A Maurais
-#2018
+# +JMJ+
+# Paul A Maurais
+# 2018
 
 import unittest
 from Card import *
@@ -17,7 +17,7 @@ class scoreTest(unittest.TestCase):
     a = Card('Nine', 'C', 9)
     b = Card('Ten', 'H', 10)
 
-    hand=Hand()
+    hand = Hand()
     hand.addCard(x)
     hand.addCard(y)
     hand.addCard(z)
@@ -26,25 +26,25 @@ class scoreTest(unittest.TestCase):
     subsets = genSubsets(hand)
 
     def testGenSubsets(self):
-        subsets=genSubsets(scoreTest.hand)
+        subsets = genSubsets(scoreTest.hand)
         self.assertEqual(len(subsets), 32)
 
     def testFifteens(self):
-        self.assertEqual(fifteens(scoreTest.subsets),2)
+        self.assertEqual(fifteens(scoreTest.subsets), 4)
 
     def testPair(self):
-        couples=[set for set in scoreTest.subsets if len(set)==2]
-        self.assertEqual(pairs(couples),1)
+        couples = [set for set in scoreTest.subsets if len(set) == 2]
+        self.assertEqual(pairs(couples), 2)
 
     def testRun(self):
-        runSets=[set for set in scoreTest.subsets if len(set)>=3]
-        self.assertEqual(runs(runSets),8)
+        runSets = [set for set in scoreTest.subsets if len(set) >= 3]
+        self.assertEqual(runs(runSets), 8)
 
     def testScore(self):
-        self.assertEqual(score(scoreTest.hand),14)
+        self.assertEqual(score(scoreTest.hand), 14)
 
 
 if __name__ == '__main__':
     unittest.main()
-    
-#+JMJ+
+
+# +JMJ+

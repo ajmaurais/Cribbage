@@ -1,9 +1,10 @@
-#+JMJ+
-#Paul A Maurais
-#2018
+# +JMJ+
+# Paul A Maurais
+# 2018
 
 from Card import Card
 import random
+
 
 class Deck:
     """A Full Deck of 52 cards"""
@@ -12,12 +13,12 @@ class Deck:
         self.Cards = []
         self.Deck = []
         self.genCards()
-
+        self.shuffle()
 
     def genCards(self):
         """Generates a deck of 52 cards in order"""
-        for suit in ['H','D','S','C']:
-            self.Cards.append(Card(name='Ace',suit=suit,value=1))
+        for suit in ['H', 'D', 'S', 'C']:
+            self.Cards.append(Card(name='Ace', suit=suit, value=1))
             self.Cards.append(Card(name='Two', suit=suit, value=2))
             self.Cards.append(Card(name='Three', suit=suit, value=3))
             self.Cards.append(Card(name='Four', suit=suit, value=4))
@@ -33,19 +34,17 @@ class Deck:
 
     def shuffle(self):
         """Generates a new, randomly shuffled deck"""
-        self.Deck=[]
-        for i in (random.sample(range(0,51),51)):
+        self.Deck = []
+        for i in (random.sample(range(0, 51), 51)):
             self.Deck.append(self.Cards[i])
 
     def cut(self):
-        """Shows card that resulted form cut, does not remove from deck"""
-        cutIndex=random.randint(1,len(self.Deck))
-        return self.Deck[cutIndex]
+        """Shows card that resulted form cut, removes from deck"""
+        cutIndex = random.randint(1, len(self.Deck))
+        return self.Deck.pop(cutIndex)
 
     def dealCard(self):
         """Deals a single card by popping the top card off the Deck"""
         return self.Deck.pop(0)
 
-
-
-#+JMJ+
+# +JMJ+
