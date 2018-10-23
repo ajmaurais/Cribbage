@@ -31,6 +31,6 @@ class Card:
         return self.dataDict[key]
 
     def __str__(self):
-        return str(self.dataDict)
+        return str(self.dataDict['name']+' of '+self.dataDict['suit'])
 
 # +JMJ+

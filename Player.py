@@ -21,4 +21,7 @@ class Player:
     def scoreHand(self):
         score(self.hand)
 
+    def __iter__(self):
+        return iter(self.hand)
+
 # +JMJ+
