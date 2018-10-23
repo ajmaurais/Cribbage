@@ -20,6 +20,6 @@ class Hand:
         return len(self.cards)
 
     def __iter__(self):
-        return self.cards
+        return iter(self.cards)
 
 # +JMJ+
