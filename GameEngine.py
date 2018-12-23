@@ -16,10 +16,11 @@ def main():
     deck.shuffle()
 
     while (True):
-        # every turn progresses: deal, play, peg
+        # every turn progresses: deal, discard, play, peg
         deal(players, deck, dealerIndex)
-        crib=discard(players)
-        print(crib)
+        crib = discard(players)
+        play(players, dealerIndex)
+        peg(players, dealerIndex, crib)
 
 
 def selectDealer(players, deck):
@@ -45,26 +46,68 @@ def deal(players, deck, dealerIndex):
     for i in range(0, 12):
         players[(dealerIndex + 1 + i) % len(players)].hand.addCard(deck.dealCard())
 
+
 def discard(players):
     '''Promp players to discard cards and use discarded cards to build the crib. returns crib (Hand)'''
-    crib=Hand()
-    playerNum=1
+    crib = Hand()
+    playerNum = 1
     for player in players:
-        for i in range(0,2):
-            if i==0:
-                string='first'
+        for i in range(0, 2):
+            if i == 0:
+                string = 'first'
             else:
-                string= 'second'
+                string = 'second'
+            string = string + " card to discard: \n"
             print(player.hand)
-            discardIndex=getInput(playerNum,string)
-            crib.addCard(player.hand.remCard(int(discardIndex)-1))
-        playerNum+=1
+            discardIndex = getInput(playerNum, string)
+            crib.addCard(player.hand.remCard(int(discardIndex) - 1))
+        playerNum += 1
 
     return crib
 
-def getInput(playerNum,string):
+
+# TODO
+def play(players, dealerIndex):
+    '''Play of the game, prompt each user to play cards until hands are exhausted'''
+    curCount = 0  # keeps track of the current play count, resets at 31
+    cardStack = []
+    for i in range(0, 8):
+        playerIndex = (dealerIndex + 1 + i) % len(players)
+        curCard = playCard(players[playerIndex], playerIndex)
+        curCount += curCard.value
+
+        if curCount > 31:
+            print('That goes over 31 you doofus!')
+            players[playerIndex].hand.addCard(curCard)
+            i -= 1
+            continue
+
+        cardStack.append(curCard)
+        checkRun(cardStack)
+
+        if curCount == 31:
+            players[playerIndex].move(2)
+            curCount = 0
+
+
+def playCard(player, playerIndex):
+    print(player.hand)
+    cardIndex = getInput(playerIndex, 'card to play or type \'pass\' to pass')
+    return player.hand.remCard(cardIndex)
+
+#TODO
+def checkRun(cardStack):
+    pass
+
+
+# TODO
+def peg(players, dealerIndex):
+    pass
+
+
+def getInput(playerNum, string):
     '''broken into its own function for testing'''
-    return input("Player " + str(playerNum) + ' Select index of ' + string + " card to discard: \n")
+    return input("Player " + str(playerNum) + ' Select index of ' + string)
 
 
 if __name__ == '__main__':
