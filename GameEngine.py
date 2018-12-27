@@ -8,14 +8,16 @@ from Player import Player
 from Deck import Deck
 from Hand import Hand
 
+gameOver=False
 
 def main():
+    global gameOver
     players = [Player(), Player()]
     deck = Deck()
     dealerIndex = selectDealer(players, deck)
     deck.shuffle()
 
-    while (True):
+    while (gameOver==False):
         # every turn progresses: deal, discard, play, peg
         deal(players, deck, dealerIndex)
         crib = discard(players)
@@ -83,7 +85,10 @@ def play(players, dealerIndex):
             continue
 
         cardStack.append(curCard)
-        checkRun(cardStack)
+
+        val=checkRun(cardStack)
+        if val >0 :
+            players[playerIndex].move(val)
 
         if curCount == 31:
             players[playerIndex].move(2)
@@ -92,17 +97,40 @@ def play(players, dealerIndex):
 
 def playCard(player, playerIndex):
     print(player.hand)
-    cardIndex = getInput(playerIndex, 'card to play or type \'pass\' to pass')
+    cardIndex = int(getInput(playerIndex, 'card to play or type \'pass\' to pass'))
     return player.hand.remCard(cardIndex)
 
-#TODO
+
 def checkRun(cardStack):
-    pass
+    runLen=0
+    prevCardVal=cardStack[0].rank
+    for card in cardStack[1:]:
+        if card.rank==prevCardVal+1:
+            runLen+=1
+        else:
+            return runLen
+    return runLen
 
 
-# TODO
+
 def peg(players, dealerIndex):
-    pass
+    global gameOver
+    #score non dealer then dealer
+    for i in range(1,len(players)+1):
+        val=players[(dealerIndex+i)%len(players)].scoreHand()
+        players[(dealerIndex + i) % len(players)].move(val)
+        if (players[(dealerIndex + i) % len(players)].frontPeg)>=121:
+            print('Player '+str((dealerIndex + i) % len(players))+' has won')
+            gameOver=True
+            return
+
+    #score crib
+    cribVal=players[dealerIndex].scoreHand()
+    players[dealerIndex].move(cribVal)
+    if (players[(dealerIndex)].frontPeg) >= 121:
+        print('Player ' + str(dealerIndex) + ' has won')
+        gameOver = True
+        return
 
 
 def getInput(playerNum, string):

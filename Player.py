@@ -19,7 +19,7 @@ class Player:
         self.frontPeg = self.frontPeg + distance
 
     def scoreHand(self):
-        score(self.hand)
+        return score(self.hand)
 
     def __iter__(self):
         return iter(self.hand)

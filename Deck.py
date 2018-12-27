@@ -40,7 +40,7 @@ class Deck:
 
     def cut(self):
         """Shows card that resulted form cut, removes from deck"""
-        cutIndex = random.randint(1, len(self.Deck))
+        cutIndex = random.randint(0, len(self.Deck)-1)
         return self.Deck.pop(cutIndex)
 
     def dealCard(self):
